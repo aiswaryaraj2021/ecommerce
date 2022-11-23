@@ -1,0 +1,51 @@
+<!-- when cart is empty -->
+<ng-container *ngIf="products.length==0">
+    <div class="text-center">
+    <h4>Your cart is empty</h4>
+    <h6>add item to it now</h6>
+    </div>
+</ng-container>
+
+<!-- when cart having item -->
+<ng-container *ngIf= "products.length!=0">
+
+<div class="container mt-5">
+    <div class="card-table border">
+        <div class="card-product">
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>Sr.No</th>
+                        <th>Product Name</th>
+                        <th>Product Image</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <tr *ngFor="let item of products">
+                        <td>{{item['id']}}</td>
+                        <td>{{item['title']}}</td>
+                        <td><img style="width: 120px;" [src]="item['image']" alt=""></td>
+                        <td style="width: 25%;"  >{{item['description']}}</td>
+                        <td  style="width: 12%;">{{item['price']}}</td>
+                        <td style="width: 12%;">{{item['quantity']}}</td>
+                        <td style="width: 12%;">{{item['total']}}</td>
+                        <td><button (click)="removeitemcart(item)" class="btn btn-danger">delete</button></td>
+                   </tr>
+                   <tr>
+                    <td colspan="4"></td>
+                    <td><button class="btn btn-danger" (click)="removeall()" >empty cart</button></td>
+                    <td><button routerLink="" class="btn btn-primary">shop more</button></td>
+                    <td><button class="btn btn-success" (click)="checkout()" >checkout</button></td>
+                    <td><strong>Grand Total : Rs. {{totalPrice}}</strong></td>
+                   </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</ng-container>
